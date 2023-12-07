@@ -398,7 +398,9 @@ void c_init(char **script)
     if (script[i][0] == 's') {
       scan_ulong(script[i] + 1,&size);
       if (size < 4096) size = 4096;
-      if (size > 16777215) size = 16777215;
+      //update 16MB log size limit to 100MB
+      //if (size > 16777215) size = 16777215;
+      if (size > 104857600) size = 104857600;
     }
     else if (script[i][0] == 'n') {
       scan_ulong(script[i] + 1,&num);
