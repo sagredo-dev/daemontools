@@ -1,0 +1,84 @@
+v. 2023.09.02
+
+multilog_readable-datetime patch for djb daemontools http://cr.yp.to/daemontools.html
+by Roberto Puzzanghera https://notes.sagredo.eu
+
+It replaces the timestamp in the log lines with a human readable datetime
+
+@40000000649b607828223d14 tcpserver: status: 0/200/0
+will be
+2023-06-28 16:17:26.501272173 tcpserver: status: 0/200/0
+
+This patch is compatible with jms' convert-multilog script, with a few modifications.
+Just download and install it again.
+
+Also the qlog archive program is compatible with this time format, provided that you
+adjust your log/run files in this way
+
+ -  	n5 s16777215 '-*' '+* qlog*' !/usr/local/bin/archive_qmail_qlog $LOGDIRQLOG
+ +  	n5 s16777215 '-*' '+*qlog*' !/usr/local/bin/archive_qmail_qlog $LOGDIRQLOG
+
+note the missing blank space before 'qlog'.
+
+=======================================================================================
+
+diff -ruN daemontools-0.76-original/src/multilog.c daemontools-0.76/src/multilog.c
+--- daemontools-0.76-original/src/multilog.c	2023-06-28 16:21:31.541358932 +0200
++++ daemontools-0.76/src/multilog.c	2023-06-29 16:09:34.268560463 +0200
+@@ -516,9 +516,9 @@
+       }
+       if (!linelen)
+         if (flagtimestamp) {
+-          timestamp(line);
+-          line[25] = ' ';
+-          linelen = 26;
++          readable_datetime(line);
++          line[29] = ' ';
++          linelen = 30;
+         }
+       if (ch == '\n')
+         break;
+diff -ruN daemontools-0.76-original/src/timestamp.c daemontools-0.76/src/timestamp.c
+--- daemontools-0.76-original/src/timestamp.c	2001-07-12 18:49:49.000000000 +0200
++++ daemontools-0.76/src/timestamp.c	2023-06-29 16:13:02.858250706 +0200
+@@ -1,7 +1,14 @@
++#include <stdio.h>
++#include <string.h>
++#include <time.h>
++#include <sys/time.h>
+ #include "taia.h"
+ #include "timestamp.h"
+ 
+ static char hex[16] = "0123456789abcdef";
++struct tm *tm_info;
++struct timespec tv;
++char nsec_buf[11];
+ 
+ void timestamp(char s[TIMESTAMP])
+ {
+@@ -18,3 +25,12 @@
+     s[i * 2 + 2] = hex[nowpack[i] & 15];
+   }
+ }
++
++void readable_datetime(char s[DT])
++{
++  clock_gettime(CLOCK_REALTIME, &tv);
++  tm_info = localtime(&tv.tv_sec);
++  strftime(s, DT, "%F %T", tm_info);
++  sprintf(nsec_buf, ".%09ld", tv.tv_nsec);
++  strcat(s, nsec_buf);
++}
+diff -ruN daemontools-0.76-original/src/timestamp.h daemontools-0.76/src/timestamp.h
+--- daemontools-0.76-original/src/timestamp.h	2001-07-12 18:49:49.000000000 +0200
++++ daemontools-0.76/src/timestamp.h	2023-06-29 16:12:23.027309169 +0200
+@@ -2,7 +2,9 @@
+ #define TIMESTAMP_H
+ 
+ #define TIMESTAMP 25
++#define DT 29
+ 
+ extern void timestamp(char *);
++extern void readable_datetime(char *);
+ 
+ #endif
