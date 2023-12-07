@@ -9,3 +9,5 @@ Patches applied to original daemontools-0.76:
 
 You can find the patches applied in the src/patches directory.
 More info at https://notes.sagredo.eu/en/qmail-notes-185/daemontools-14.html
+
+Original daemontools-0.76 program by DJB here http://cr.yp.to/daemontools.html
