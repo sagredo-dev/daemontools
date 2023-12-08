@@ -1,7 +1,7 @@
 # daemontools
 My patched daemontools
 
-Patches applied to the original daemontools-0.76:
+Patches applied to the [original djb daemontools-0.76](http://cr.yp.to/daemontools.html):
 
 * errno patch
 * multilog_filesize_limit patch by Sam Tang, which extends the file log size limit to 100MB (default is 16MB).
