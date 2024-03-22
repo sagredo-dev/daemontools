@@ -25,6 +25,7 @@ src/fghack.c
 src/pgrphack.c
 src/readproctitle.c
 src/multilog.c
+src/multilog2.c
 src/tai64n.c
 src/tai64nlocal.c
 src/softlimit.c
