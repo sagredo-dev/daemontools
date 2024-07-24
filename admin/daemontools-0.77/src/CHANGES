@@ -83,3 +83,15 @@
 		impact: package/{compile,run,upgrade} fail. tnx Mate
 		Wierdl. fix: use -d, -h, -r.
 	version: daemontools 0.76, beta.
+
+Dec 9, 2023
+	version daemontools 0.77 (Roberto Puzzanghera)
+	- errno patch
+	- multilog_filesize_limit patch by Sam Tang, which extends the file log size limit to 100MB (default is 16MB).
+	- multilog-readable_datetime patch, which replaces the timestamp with a human readable datetime.
+
+July 2024
+        version daemontools 0.78 (Roberto Puzzanghera)
+	- multilog2.c uses original timestamps
+	- fixed several compilation warnings
+
