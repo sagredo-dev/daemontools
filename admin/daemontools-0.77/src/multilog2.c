@@ -517,9 +517,9 @@ void doit(char **script)
       }
       if (!linelen)
         if (flagtimestamp) {
-          readable_datetime(line);
-          line[29] = ' ';
-          linelen = 30;
+          timestamp(line);
+          line[25] = ' ';
+          linelen = 26;
         }
       if (ch == '\n')
         break;

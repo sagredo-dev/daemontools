@@ -36,7 +36,7 @@ void start(char *fn)
   struct stat st;
   int child;
   int i;
-  const char *args[3];
+  char *args[3];
 
   if (fn[0] == '.') return;
 

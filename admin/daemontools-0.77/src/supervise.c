@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -84,7 +85,7 @@ void trigger(void)
   write(selfpipe[1],"",1);
 }
 
-const char *run[2] = { "./run", 0 };
+char *run[2] = { "./run", 0 };
 
 void trystart(void)
 {

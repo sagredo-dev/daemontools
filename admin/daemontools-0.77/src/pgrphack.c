@@ -4,7 +4,7 @@
 
 #define FATAL "pgrphack: fatal: "
 
-int main(int argc,const char * const *argv,const char * const *envp)
+int main(int argc,char * const *argv,char * const *envp)
 {
   if (!argv[1]) strerr_die1x(100,"pgrphack: usage: pgrphack child");
   setsid(); /* shouldn't fail; if it does, too bad */

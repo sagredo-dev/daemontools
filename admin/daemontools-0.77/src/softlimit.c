@@ -36,7 +36,7 @@ void doit(int resource,const char *arg)
     strerr_die2sys(111,FATAL,"setrlimit failed: ");
 }
 
-int main(int argc,const char *const *argv,const char *const *envp)
+int main(int argc,char *const *argv,char *const *envp)
 {
   int opt;
 

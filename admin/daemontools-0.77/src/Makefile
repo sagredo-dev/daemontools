@@ -22,7 +22,8 @@ clean:
 	systype tai64n tai64n.o tai64nlocal tai64nlocal.o tai_now.o \
 	tai_pack.o tai_sub.o tai_unpack.o taia_add.o taia_approx.o \
 	taia_frac.o taia_less.o taia_now.o taia_pack.o taia_sub.o taia_uint.o \
-	time.a timestamp.o uint64.h unix.a wait_nohang.o wait_pid.o
+	time.a timestamp.o uint64.h unix.a wait_nohang.o wait_pid.o \
+	multilog2 multilog2.o
 
 alloc.o: alloc.c alloc.h compile error.h
 	./compile alloc.c
@@ -213,6 +214,15 @@ direntry.h env.h error.h fd.h lock.h match.h multilog.c open.h scan.h \
 seek.h sig.h str.h strerr.h timestamp.h wait.h
 	./compile multilog.c
 
+multilog2: byte.a deepsleep.o load match.o multilog2.o time.a \
+timestamp.o unix.a
+	./load multilog2 deepsleep.o timestamp.o match.o time.a unix.a byte.a
+
+multilog2.o: alloc.h buffer.h byte.h coe.h compile deepsleep.h \
+direntry.h env.h error.h fd.h lock.h match.h multilog2.c open.h scan.h \
+seek.h sig.h str.h strerr.h timestamp.h wait.h
+	./compile multilog2.c
+
 ndelay_off.o: compile ndelay.h ndelay_off.c
 	./compile ndelay_off.c
 
@@ -262,7 +272,7 @@ readproctitle: byte.a load readproctitle.o unix.a
 readproctitle.o: compile error.h readproctitle.c
 	./compile readproctitle.c
 
-rts: envdir envuidgid fghack matchtest multilog pgrphack \
+rts: envdir envuidgid fghack matchtest multilog multilog2 pgrphack \
 readproctitle rts.tests setlock setuidgid softlimit supervise svc \
 svok svscan svscanboot svstat tai64n tai64nlocal
 	env - /bin/sh rts.tests 2>&1 | cat -v > rts

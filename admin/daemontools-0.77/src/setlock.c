@@ -14,7 +14,7 @@ void usage() {
 int flagndelay = 0;
 int flagx = 0;
 
-int main(int argc,const char *const *argv,const char *const *envp)
+int main(int argc,char *const *argv,char *const *envp)
 {
   int opt;
   int fd;
