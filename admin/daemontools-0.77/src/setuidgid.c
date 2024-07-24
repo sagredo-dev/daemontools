@@ -9,7 +9,7 @@
 const char *account;
 struct passwd *pw;
 
-int main(int argc,const char *const *argv,const char *const *envp)
+int main(int argc,char *const *argv,char *const *envp)
 {
   account = *++argv;
   if (!account || !*++argv)

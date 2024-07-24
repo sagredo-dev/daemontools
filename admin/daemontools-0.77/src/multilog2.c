@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -172,7 +173,7 @@ void finish(struct cyclog *d,const char *file,const char *code)
 
 void startprocessor(struct cyclog *d)
 {
-  const char *args[4];
+  char *args[4];
   int fd;
 
   sig_uncatch(sig_term);
@@ -193,11 +194,11 @@ void startprocessor(struct cyclog *d)
   if (fd == -1) return;
   if (fd_move(5,fd) == -1) return;
 
-  args[0] = "sh";
+  args[0] = "/bin/sh";
   args[1] = "-c";
   args[2] = d->processor;
   args[3] = 0;
-  execve("/bin/sh",args,environ);
+  execve(*args,args,environ);
 }
 
 void fullcurrent(struct cyclog *d)

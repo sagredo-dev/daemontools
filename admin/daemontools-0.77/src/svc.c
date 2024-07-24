@@ -19,7 +19,7 @@ char bspace[1];
 
 int fdorigdir;
 
-int main(int argc,const char *const *argv)
+int main(int argc,char *const *argv)
 {
   int opt;
   int fd;
