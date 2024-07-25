@@ -15,7 +15,7 @@ char strnum[FMT_ULONG];
 const char *account;
 struct passwd *pw;
 
-int main(int argc,const char *const *argv)
+int main(int argc,char *const *argv)
 {
   account = *++argv;
   if (!account || !*++argv)

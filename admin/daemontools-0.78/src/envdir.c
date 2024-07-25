@@ -21,7 +21,7 @@ void nomem(void)
 
 static stralloc sa;
 
-int main(int argc,const char *const *argv)
+int main(int argc,char *const *argv)
 {
   int fdorigdir;
   const char *fn;
