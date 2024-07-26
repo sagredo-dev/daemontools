@@ -1,5 +1,6 @@
 /* Public domain. */
 
+#include <stddef.h>
 #include <signal.h>
 #include "sig.h"
 #include "hassgprm.h"
@@ -12,7 +13,7 @@ void sig_block(int sig)
   sigaddset(&ss,sig);
   sigprocmask(SIG_BLOCK,&ss,(sigset_t *) 0);
 #else
-  sigblock(1 << (sig - 1));
+  sigprocmask(1 << (sig - 1), NULL, NULL);
 #endif
 }
 
@@ -24,7 +25,7 @@ void sig_unblock(int sig)
   sigaddset(&ss,sig);
   sigprocmask(SIG_UNBLOCK,&ss,(sigset_t *) 0);
 #else
-  sigsetmask(sigsetmask(~0) & ~(1 << (sig - 1)));
+  sigprocmask(sigprocmask(~0,NULL,NULL) & ~(1 << (sig - 1)), NULL, NULL);
 #endif
 }
 
@@ -35,6 +36,6 @@ void sig_blocknone(void)
   sigemptyset(&ss);
   sigprocmask(SIG_SETMASK,&ss,(sigset_t *) 0);
 #else
-  sigsetmask(0);
+  sigprocmask(0, NULL, NULL);
 #endif
 }
