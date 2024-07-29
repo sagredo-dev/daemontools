@@ -495,11 +495,14 @@ void doit(char **script)
   char *action;
   int flagselected;
   int flagtimestamp;
+  int flagdatetime;
 
   flagtimestamp = 0;
-  if (script[0])
-    if (script[0][0] == 't')
-      flagtimestamp = 1;
+  flagdatetime  = 0;
+  if (script[0]) {
+    if (script[0][0] == 't') flagtimestamp = 1;
+    else if (script[0][0] == 'd') flagdatetime = 1;
+  }
 
   for (i = 0;i <= 1000;++i) line[i] = '\n';
   linelen = 0;
@@ -520,6 +523,11 @@ void doit(char **script)
           timestamp(line);
           line[25] = ' ';
           linelen = 26;
+        }
+        else if (flagdatetime) {
+          readable_datetime(line);
+          line[29] = ' ';
+          linelen = 30;
         }
       if (ch == '\n')
         break;

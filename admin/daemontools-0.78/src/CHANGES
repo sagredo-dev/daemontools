@@ -92,5 +92,6 @@ Dec 9, 2023
 
 July 2024
         version daemontools 0.78 (Roberto Puzzanghera)
+	- multilog prints a readable datetime if used with "d" flag, it prints timestamps if used in the usual way with the "t" flag
 	- fixed several compilation warnings
 
