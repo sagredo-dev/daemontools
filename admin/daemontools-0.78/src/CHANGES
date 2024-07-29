@@ -92,6 +92,5 @@ Dec 9, 2023
 
 July 2024
         version daemontools 0.78 (Roberto Puzzanghera)
-	- multilog2.c uses original timestamps
 	- fixed several compilation warnings
 
