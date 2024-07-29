@@ -25,6 +25,8 @@ prints the line
 
 - the action `d` inserts a human readable datetime in front of each line.
 
+Example:
+
 `multilog d '-*' '+* fatal: *' ./main`
 
 prints the line
