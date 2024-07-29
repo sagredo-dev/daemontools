@@ -10,8 +10,8 @@ Patches applied to the [original djb daemontools-0.76](http://cr.yp.to/daemontoo
 
 You can find the patches applied in the src/patches directory.
 
-## multilog program with human readable datetime
-The multilog program has been patched to work both with timestamps and human readable datetimes https://github.com/sagredo-dev/daemontools/commit/80f213303646419ddfbfe412df21741d5ee2abfd
+## `multilog` program with human readable datetime
+The multilog program has been patched to work both with timestamps and human readable datetimes [commit](https://github.com/sagredo-dev/daemontools/commit/80f213303646419ddfbfe412df21741d5ee2abfd)
 
 - the action `t` inserts an @, a precise timestamp, and a space in front of each line, using the same format as `tai64n`.
 
