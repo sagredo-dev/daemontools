@@ -1,0 +1,17 @@
+Patch by Sam Tang https://www.phpini.com/files/multilog_filesize_limit.patch
+it gets daemontools to limit the maximum log file size to 100MB instead of 16MB (default value)
+More info here http://notes.sagredo.eu/en/qmail-notes-185/daemontools-14.html#comment1052
+
+--- daemontools-0.76/src/multilog.old.c	2018-04-06 18:22:01.174488900 +0800
++++ daemontools-0.76/src/multilog.c	2018-04-06 18:09:43.794314092 +0800
+@@ -398,7 +398,9 @@
+     if (script[i][0] == 's') {
+       scan_ulong(script[i] + 1,&size);
+       if (size < 4096) size = 4096;
+-      if (size > 16777215) size = 16777215;
++      //update 16MB log size limit to 100MB
++      //if (size > 16777215) size = 16777215;
++      if (size > 104857600) size = 104857600;
+     }
+     else if (script[i][0] == 'n') {
+       scan_ulong(script[i] + 1,&num);
