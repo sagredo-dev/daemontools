@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash
 package/compile
 package/upgrade
 package/run
