@@ -102,3 +102,8 @@ Oct 4, 2024
 Oct 10, 2024
         version daemontools 0.78.2 (Roberto Puzzanghera)
         - added -ltr to conf-ld to link librt.so for systems with glibc prior to v. 2.17
+
+Oct 14, 2024
+        version daemontools 0.78.3 (Roberto Puzzanghera)
+        - all package/ scripts now run the bash shell
+        - daemontools-0.78.2 directory renamed to daemontools
