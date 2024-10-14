@@ -106,4 +106,6 @@ Oct 10, 2024
 Oct 14, 2024
         version daemontools 0.78.3 (Roberto Puzzanghera)
         - all package/ scripts now run the bash shell
+        - package/run script will recognize if we are in an lxc container to skip inittab configuration
+        - package/run.rclocal will find both /etc/rc.local /etc/rc.d/rc.local
         - daemontools-0.78.2 directory renamed to daemontools

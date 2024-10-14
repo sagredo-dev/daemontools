@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if grep svscanboot /etc/rc.local >/dev/null
+if grep svscanboot $1 >/dev/null
 then
   echo 'rc.local contains an svscanboot line. I assume that svscan is already running.'
 else
-  echo 'Adding svscanboot to /etc/rc.local...'
-  rm -f /etc/rc.local'{new}'
-  cat /etc/rc.local package/boot.rclocal > /etc/rc.local'{new}'
-  mv -f /etc/rc.local'{new}' /etc/rc.local
+  echo "Adding svscanboot to $1..."
+  rm -f ${1}'{new}'
+  cat $1 package/boot.rclocal > ${1}'{new}'
+  mv -f ${1}'{new}' $1
   echo 'Reboot now to start svscan.'
 fi
