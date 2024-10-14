@@ -13,9 +13,21 @@ fi
 echo 'Creating /service...'
 mkdir /service
 
-if test -r /etc/inittab
+# If we are in an lxc container, set $container to skip inittab configuration
+if grep -aq container=lxc /proc/1/environ 2> /dev/null
+then
+  container="lxc"
+fi
+
+if [ -r /etc/inittab ] && [ -z $container ]
 then
   /command/setlock /etc/inittab package/run.inittab
 else
-  /command/setlock /etc/rc.local package/run.rclocal
+  if [ -w /etc/rc.d/rc.local ]
+  then
+    rclocal=/etc/rc.d/rc.local
+  else
+    rclocal=/etc/rc.local
+  fi
+  /command/setlock $rclocal package/run.rclocal $rclocal
 fi
