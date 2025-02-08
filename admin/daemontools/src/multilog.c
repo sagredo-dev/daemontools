@@ -518,7 +518,7 @@ void doit(char **script)
         flageof = 1;
         break;
       }
-      if (!linelen)
+      if (!linelen) {
         if (flagtimestamp) {
           timestamp(line);
           line[25] = ' ';
@@ -529,14 +529,14 @@ void doit(char **script)
           line[29] = ' ';
           linelen = 30;
         }
-      if (ch == '\n')
-        break;
+      }
+      if (ch == '\n') break;
       line[linelen++] = ch;
     }
 
     flagselected = 1;
     j = 0;
-    for (i = 0;action = script[i];++i)
+    for (i = 0; (action = script[i]); ++i)
       switch(*action) {
         case '+':
           if (!flagselected)

@@ -40,26 +40,32 @@ int main(int argc,char *const *argv)
   if (fdorigdir == -1)
     strerr_die2sys(111,FATAL,"unable to open current directory: ");
 
-  while (dir = *argv++) {
-    if (chdir(dir) == -1)
+  while ((dir = *argv++)) {
+    if (chdir(dir) == -1) {
       strerr_warn4(WARNING,"unable to chdir to ",dir,": ",&strerr_sys);
+    }
     else {
       fd = open_write("supervise/control");
-      if (fd == -1)
-        if (errno == error_nodevice)
+      if (fd == -1) {
+        if (errno == error_nodevice) {
           strerr_warn4(WARNING,"unable to control ",dir,": supervise not running",0);
-        else
+        }
+        else {
           strerr_warn4(WARNING,"unable to control ",dir,": ",&strerr_sys);
+        }
+      }
       else {
         ndelay_off(fd);
         buffer_init(&b,buffer_unixwrite,fd,bspace,sizeof bspace);
-        if (buffer_putflush(&b,data,datalen) == -1)
+        if (buffer_putflush(&b,data,datalen) == -1) {
           strerr_warn4(WARNING,"error writing commands to ",dir,": ",&strerr_sys);
+        }
         close(fd);
       }
     }
-    if (fchdir(fdorigdir) == -1)
+    if (fchdir(fdorigdir) == -1) {
       strerr_die2sys(111,FATAL,"unable to set directory: ");
+    }
   }
 
   _exit(0);
