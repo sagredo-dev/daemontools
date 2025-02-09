@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=0.78.3
+VERSION=0.78.4
 
 umask 022
 test -d package || ( echo 'Wrong working directory.'; exit 1 )
