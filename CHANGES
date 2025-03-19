@@ -109,3 +109,13 @@ Oct 14, 2024
         - package/run script will recognize if we are in an lxc container to skip inittab configuration
         - package/run.rclocal will find both /etc/rc.local /etc/rc.d/rc.local
         - daemontools-0.78.2 directory renamed to daemontools
+
+Feb 9, 2025
+        version daemontools 0.78.4
+        - several adjustments to get clang version 18.1.6 compatibility
+        - restored !/bin/sh in all scripts
+
+Mar 19, 2025
+        version 0.79
+        - Moved 'package' and 'src' to the top dir
+        - Version grabbed from 'VERSION' in package/upgrade
