@@ -39,12 +39,15 @@
   - version: daemontools 0.60, alpha.
 
 - 19990825
-  - portability problem: some systems need sys/time.h, not just time.h, before sys/resource.h. impact: couldn't compile.  
-  - fix: change time.h to sys/time.h in softlimit.c. tnx Jos Backus and Chris Johnson.
-  - portability problem: echo -n echoes literal -n under traditional System V. tnx Tim Goodwin. impact: rts mismatch. fix:
-   echo | tr -d.
-   - doc: removed note on man pages in conf-home. tnx Mate Wierdl.  
-   - ui: do pidchange() and announce() before opening supervise/ok in supervise.c.
+  - portability problem: some systems need sys/time.h, not just time.h, before sys/resource.h.
+    - impact: couldn't compile.
+    - fix: change time.h to sys/time.h in softlimit.c.
+    - tnx Jos Backus and Chris Johnson.
+  - portability problem: echo -n echoes literal -n under traditional System V.
+    - tnx Tim Goodwin. impact: rts mismatch.
+    - fix: echo | tr -d.
+  - doc: removed note on man pages in conf-home. tnx Mate Wierdl.
+  - ui: do pidchange() and announce() before opening supervise/ok in supervise.c.
 
 - 19990826
   - version: daemontools 0.61, alpha.
@@ -79,14 +82,18 @@
 - 20010707
   - internal: added const at various places.
   - internal: miscellaneous cleanups.
-    - portability problem: with recent versions of glibc, and on AIX, including sys/time.h doesn't define struct tm. impact:
-couldn't compile. fix: also include time.h. tnx many people.
-    - portability problem: although sleep() isn't interrupted by signals on my old BSD/OS development machine, it is
-interrupted by signals on all new systems. impact: if a supervised process dies quickly (but not too quickly),
-supervise's 1-second sleep is interrupted, and the process is restarted immediately. fix: new deepsleep().
+  - portability problem: with recent versions of glibc, and on AIX, including sys/time.h doesn't define struct tm.
+    - impact: couldn't compile.
+    - fix: also include time.h.
+    - tnx many people.
+  - portability problem: although sleep() isn't interrupted by signals on my old BSD/OS development machine, it is
+interrupted by signals on all new systems.
+    - impact: if a supervised process dies quickly (but not too quickly), supervise's 1-second sleep is interrupted,
+and the process is restarted immediately.
+    - fix: new deepsleep().
   - internal: switched signal handling in supervise and multilog to blocked-by-default.
-  - ui: multilog accepts ALRM to immediately rotate all cyclic logs for which current is nonempty. tnx Peter Samuel and 
-William E. Baxter.
+  - ui: multilog accepts ALRM to immediately rotate all cyclic logs for which current is nonempty.
+    -tnx Peter Samuel and William E. Baxter.
 
 - 20010708
   - portability problem: under System V, one process can hold many exclusive locks on one file. impact: no impact on normal
