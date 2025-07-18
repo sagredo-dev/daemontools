@@ -34,6 +34,6 @@ Patches applied to the [original djb daemontools-0.76](http://cr.yp.to/daemontoo
 * [multilog_filesize_limit patch](https://github.com/sagredo-dev/daemontools/commit/48b7393aafaccb4082a0707b1388b2bc0dd1003b) by Sam Tang, which extends the file log size limit to 100MB (default is 16MB).
 
 ## More info and support
-You can find more info and ask for support at https://notes.sagredo.eu/en/qmail-notes-185/daemontools-14.html
+You can find more info and ask for support at https://www.sagredo.eu/en/qmail-notes-185/daemontools-14.html
 
 Post any comment there.
