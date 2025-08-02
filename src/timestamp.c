@@ -34,3 +34,16 @@ void readable_datetime(char s[DATETIME])
   sprintf(nsec_buf, ".%09ld", tv.tv_nsec);
   strcat(s, nsec_buf);
 }
+
+void readable_datetimemillis(char *s)
+{
+  char msec_buf[5];
+  long ms;
+  clock_gettime(CLOCK_REALTIME, &tv);
+  tm_info = localtime(&tv.tv_sec);
+  strftime(s, DATETIME, "%F %T", tm_info);
+  ms = tv.tv_nsec / 1000000;
+  if (ms > 1000) ms = 0;
+  snprintf(msec_buf, sizeof(msec_buf), ".%03ld", ms);
+  strcat(s, msec_buf);
+}
