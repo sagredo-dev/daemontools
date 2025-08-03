@@ -496,12 +496,15 @@ void doit(char **script)
   int flagselected;
   int flagtimestamp;
   int flagdatetime;
-
+  int flagdatetimemillis;
+  
   flagtimestamp = 0;
   flagdatetime  = 0;
+  flagdatetimemillis  = 0;
   if (script[0]) {
     if (script[0][0] == 't') flagtimestamp = 1;
     else if (script[0][0] == 'd') flagdatetime = 1;
+    else if (script[0][0] == 'm') flagdatetimemillis = 1;
   }
 
   for (i = 0;i <= 1000;++i) line[i] = '\n';
@@ -528,6 +531,11 @@ void doit(char **script)
           readable_datetime(line);
           line[29] = ' ';
           linelen = 30;
+        }
+        else if (flagdatetimemillis) {
+          readable_datetimemillis(line);
+          line[23] = ' ';
+          linelen = 24;
         }
       }
       if (ch == '\n') break;
