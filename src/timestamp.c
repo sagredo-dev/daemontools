@@ -8,7 +8,6 @@
 static char hex[16] = "0123456789abcdef";
 struct tm *tm_info;
 struct timespec tv;
-char nsec_buf[11];
 
 void timestamp(char s[TIMESTAMP])
 {
@@ -28,6 +27,7 @@ void timestamp(char s[TIMESTAMP])
 
 void readable_datetime(char s[DATETIME])
 {
+  char nsec_buf[11];
   clock_gettime(CLOCK_REALTIME, &tv);
   tm_info = localtime(&tv.tv_sec);
   strftime(s, DATETIME, "%F %T", tm_info);
@@ -35,7 +35,7 @@ void readable_datetime(char s[DATETIME])
   strcat(s, nsec_buf);
 }
 
-void readable_datetimemillis(char *s)
+void readable_datetime_ms(char *s)
 {
   char msec_buf[5];
   long ms;

@@ -6,6 +6,6 @@
 
 extern void timestamp(char *);
 extern void readable_datetime(char *);
-extern void readable_datetimemillis(char *);
+extern void readable_datetime_ms(char *);
 
 #endif
