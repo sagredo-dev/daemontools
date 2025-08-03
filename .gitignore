@@ -1,2 +1,7 @@
 compile/
 command/
+src/*.o
+src/*.a
+src/compile
+src/makelib
+src/systype
