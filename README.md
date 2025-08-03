@@ -25,6 +25,12 @@ prints the line
 
 `2024-07-29 10:36:08.811661123 fatal: out of memory`
 
+`multilog m '-*' '+* fatal: *' ./main`
+
+prints the line
+
+`2024-07-29 10:36:08.811 fatal: out of memory`
+
 Both flags are required to be the first action.
 
 ## Other patches applied

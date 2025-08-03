@@ -1,5 +1,8 @@
 # Changelog
 
+- Aug 3, 2025
+  - multilog prints a readable datetime in milliseconds if used with "m" flag (thanks squidvisa)
+
 - Mar 19, 2025, version 0.79
   - Moved 'package' and 'src' to the top dir
   - Version grabbed from 'VERSION' in package/upgrade
