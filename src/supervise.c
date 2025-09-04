@@ -222,7 +222,7 @@ int main(int argc,char **argv)
   ndelay_on(selfpipe[1]);
 
   sig_block(sig_child);
-  sig_catch(sig_child,trigger);
+  sig_catch(sig_child,(void (*)(int)) trigger);
 
   if (chdir(dir) == -1)
     strerr_die4sys(111,FATAL,"unable to chdir to ",dir,": ");

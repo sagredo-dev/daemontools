@@ -2,7 +2,7 @@
 #include "timestamp.h"
 #include "buffer.h"
 
-int mywrite(int fd,char *buf,int len)
+int mywrite(int fd,char *buf,unsigned int len)
 {
   int w;
   w = buffer_unixwrite(fd,buf,len);
@@ -13,7 +13,7 @@ int mywrite(int fd,char *buf,int len)
 char outbuf[2048];
 buffer out = BUFFER_INIT(mywrite,1,outbuf,sizeof outbuf);
 
-int myread(int fd,char *buf,int len)
+int myread(int fd,char *buf,unsigned int len)
 {
   int r;
   buffer_flush(&out);

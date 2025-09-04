@@ -1,6 +1,9 @@
 # Changelog
 
-- Aug 3, 2025
+- Sep 2025, version 0.81
+  - gcc 15.2 compatibility
+
+- Aug 3, 2025, version 0.80
   - multilog prints a readable datetime in milliseconds if used with "m" flag (thanks squidvisa)
 
 - Mar 19, 2025, version 0.79

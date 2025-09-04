@@ -268,7 +268,7 @@ void fullcurrent(struct cyclog *d)
   }
 }
 
-int c_write(int pos,char *buf,int len)
+int c_write(int pos,const char *buf,unsigned int len)
 {
   struct cyclog *d;
   int w;
@@ -415,7 +415,7 @@ void c_init(char **script)
       d->size = size;
       d->processor = processor;
       d->dir = script[i];
-      buffer_init(&d->ss,c_write,d - c,d->buf,sizeof d->buf);
+      buffer_init(&d->ss,(int (*)(int, char *, unsigned int)) c_write,d - c,d->buf,sizeof d->buf);
       restart(d);
       ++d;
     }
@@ -438,17 +438,17 @@ int flagexitasap = 0;
 int flagforcerotate = 0;
 int flagnewline = 1;
 
-void exitasap(void)
+void exitasap(int sig)
 {
   flagexitasap = 1;
 }
 
-void forcerotate(void)
+void forcerotate(int sig)
 {
   flagforcerotate = 1;
 }
 
-int flushread(int fd,char *buf,int len)
+int flushread(int fd, char *buf, unsigned int len)
 {
   int j;
 
@@ -586,7 +586,7 @@ void doit(char **script)
     for (j = 0;j < cnum;++j)
       if (c[j].flagselected)
         buffer_put(&c[j].ss,line,linelen);
-        
+
     if (linelen == 1000)
       for (;;) {
         if (buffer_GETC(&ssin,&ch) <= 0) {

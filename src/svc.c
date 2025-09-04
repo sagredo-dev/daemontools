@@ -56,7 +56,7 @@ int main(int argc,char *const *argv)
       }
       else {
         ndelay_off(fd);
-        buffer_init(&b,buffer_unixwrite,fd,bspace,sizeof bspace);
+        buffer_init(&b,(int (*)(int,  char *, unsigned int)) buffer_unixwrite,fd,bspace,sizeof bspace);
         if (buffer_putflush(&b,data,datalen) == -1) {
           strerr_warn4(WARNING,"error writing commands to ",dir,": ",&strerr_sys);
         }

@@ -12,7 +12,7 @@
 #define WARNING "svstat: warning: "
 
 char bspace[1024];
-buffer b = BUFFER_INIT(buffer_unixwrite,1,bspace,sizeof bspace);
+buffer b = BUFFER_INIT((int (*)(int, char *, unsigned int)) buffer_unixwrite,1,bspace,sizeof bspace);
 
 char status[18];
 char strnum[FMT_ULONG];
