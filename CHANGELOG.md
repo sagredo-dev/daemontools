@@ -1,5 +1,9 @@
 # Changelog
 
+- Sep 2025, version 0.82
+  - Fixed crash in multilog.c/flushread: return 0 instead of negative/EOF length to avoid
+    out-of-bounds buffer access.
+
 - Sep 2025, version 0.81
   - gcc 15.2 compatibility
 
