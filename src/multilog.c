@@ -475,7 +475,10 @@ int flushread(int fd, char *buf, unsigned int len)
   sig_block(sig_term);
   sig_block(sig_alarm);
 
-  if (len <= 0) return 0;
+  if (len <= 0) {
+    flagnewline = 0;
+    return 0;
+  }
   flagnewline = (buf[len - 1] == '\n');
   return len;
 }
