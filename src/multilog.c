@@ -450,7 +450,7 @@ void forcerotate(int sig)
 
 int flushread(int fd, char *buf, unsigned int len)
 {
-  int j;
+  int j, r;
 
   for (j = 0;j < cnum;++j)
     buffer_flush(&c[j].ss);
@@ -470,17 +470,17 @@ int flushread(int fd, char *buf, unsigned int len)
   sig_unblock(sig_term);
   sig_unblock(sig_alarm);
 
-  len = read(fd,buf,len);
+  r = read(fd,buf,len);
 
   sig_block(sig_term);
   sig_block(sig_alarm);
 
-  if (len <= 0) {
-    flagnewline = 0;
-    return 0;
+  if (r <= 0) {
+    /* read() failed or EOF: avoid buf[r-1] out-of-bounds */
+    return r;
   }
-  flagnewline = (buf[len - 1] == '\n');
-  return len;
+  flagnewline = (buf[r - 1] == '\n');
+  return r;
 }
 
 char inbuf[1024];
