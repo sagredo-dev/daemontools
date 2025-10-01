@@ -1,5 +1,8 @@
 # Changelog
 
+- Oct 1, 2025
+  - commands installed in /command. No need to copy the sources on /var/qmail or whatelse.
+
 - Sep 2025, version 0.82
   - Fixed crash in multilog caused by invalid buffer access when read() returned -1.
 
