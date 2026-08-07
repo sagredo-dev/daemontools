@@ -82,11 +82,19 @@ int main(int argc,char *const *argv,char *const *envp)
 #ifdef RLIMIT_MEMLOCK
         doit(RLIMIT_MEMLOCK,optarg);
 #endif
+/*
+ * NetBSD:
+ * Applying RLIMIT_AS/RLIMIT_VMEM as part of -m may prevent the
+ * dynamic loader from mapping shared libraries when low memory
+ * limits are used. Leave these limits unchanged.
+ */
+#ifndef __NetBSD__
 #ifdef RLIMIT_VMEM
-        doit(RLIMIT_VMEM,optarg);
+        doit(RLIMIT_VMEM, optarg);
 #endif
 #ifdef RLIMIT_AS
-        doit(RLIMIT_AS,optarg);
+        doit(RLIMIT_AS, optarg);
+#endif
 #endif
 	break;
       case 'o':
